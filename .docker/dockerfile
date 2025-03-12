@@ -1,7 +1,9 @@
 FROM python:3.12.7-slim
 
 WORKDIR /Inventory_Management
+
 RUN useradd --create-home appuser
+RUN chown -R appuser:appuser /Inventory_Management
 
 ENV PYTHONPATH="${PYTHONPATH}:/Inventory_Management"
 
@@ -14,7 +16,7 @@ RUN pip install --no-cache-dir -r ./requirements/dev.txt
 
 COPY .. .
 
-USER appuser
+USER root
 
 EXPOSE 8000
 
