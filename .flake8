@@ -1,0 +1,11 @@
+[flake8]
+exclude =
+extend-ignore =
+    R504,
+    B008,
+    N802,
+    IND101
+max-line-length = 89
+inline-quotes = double
+multiline-quotes = double
+docstring-quotes = """
