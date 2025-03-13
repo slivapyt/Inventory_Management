@@ -16,9 +16,43 @@
 
 	// The optional 'workspaceFolder' property is the path VS Code should open by default when
 	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
-
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"njpwerner.autodocstring",
+				"ms-python.autopep8",
+				"streetsidesoftware.code-spell-checker",
+				"ms-vscode-remote.remote-containers",
+				"ms-azuretools.vscode-docker",
+				"ms-python.flake8",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"VisualStudioExptTeam.intellicode-api-usage-examples",
+				"magicstack.MagicPython",
+				"PKief.material-icon-theme",
+				"monokai.theme-monokai-pro-vscode",
+				"ms-python.vscode-pylance",
+				"ms-python.python",
+				"KevinRose.vsc-python-indent",
+				"njqdev.vscode-python-typehint",
+				"streetsidesoftware.code-spell-checker-russian",
+				"qwtel.sqlite-viewer",
+				"mtxr.sqltools",
+				"TabNine.tabnine-vscode",
+				"SeeLog.python-init-generator",
+				"mtxr.sqltools-driver-sqlite",
+				"mechatroner.rainbow-csv",
+				"mtxr.sqltools-driver-pg",
+				"redhat.vscode-yaml",
+				"batisteo.vscode-django",
+				"eamodio.gitlens",
+				"angus-mcritchie.quote-swapper",
+				"mtxr.sqltools-driver-mssql"
+			]
+		}
+	}
+}
 	
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},

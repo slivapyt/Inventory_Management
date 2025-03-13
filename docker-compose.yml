@@ -11,8 +11,9 @@ services:
     ports:
       - "5432:5432"
     restart: unless-stopped
-    depends_on:
-      - inventory_management
+
+
+
   inventory_management:
     container_name: inventory_management
     build:
@@ -20,6 +21,8 @@ services:
       dockerfile: dockerfile
     ports:
       - "8000:8000"
+    depends_on:
+      - inventory_management_db
     volumes:
       - .:/Inventory_Management
     env_file:

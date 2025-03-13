@@ -2,12 +2,12 @@
     "sqltools.connections": [
         {
             "previewLimit": 50,
-            "server": "localhost",
+            "server": "inventory_management_db",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "inventory_management_db",
             "database": "Inventory",
-            "username": "sliva"
+            "username": "sliva",
+            "name": "management_db"
         }
     ]
 }
