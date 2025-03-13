@@ -1,0 +1,32 @@
+services:
+  inventory_management_db:
+    container_name: inventory_management_db
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=Inventory
+      - POSTGRES_USER=sliva
+      - POSTGRES_PASSWORD=241655
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    depends_on:
+      - inventory_management_workspace
+  inventory_management:
+    container_name: inventory_management
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/Inventory_Management
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    stdin_open: true
+    tty: true 
+
+volumes:
+  postgres_data:

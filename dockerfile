@@ -12,12 +12,13 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     
 COPY requirements/dev.txt ./requirements/dev.txt
 COPY requirements/prod.txt ./requirements/prod.txt
+
 RUN pip install --no-cache-dir -r ./requirements/dev.txt
 
-COPY .. .
+COPY . .
 
 USER root
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["/bin/bash"]
