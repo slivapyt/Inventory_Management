@@ -13,7 +13,6 @@ services:
     restart: unless-stopped
 
 
-
   inventory_management:
     container_name: inventory_management
     build:
@@ -30,6 +29,9 @@ services:
     restart: unless-stopped
     stdin_open: true
     tty: true 
+    entrypoint: ["tail", "-f", "/dev/null"]
+
 
 volumes:
   postgres_data:
+
