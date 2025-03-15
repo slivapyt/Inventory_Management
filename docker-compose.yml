@@ -8,6 +8,10 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          memory: 1G
     ports:
       - "5432:5432"
     restart: unless-stopped
@@ -27,11 +31,8 @@ services:
     env_file:
       - ./.env
     restart: unless-stopped
-    stdin_open: true
-    tty: true 
     entrypoint: ["tail", "-f", "/dev/null"]
 
 
 volumes:
   postgres_data:
-

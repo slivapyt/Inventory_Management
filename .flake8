@@ -6,7 +6,8 @@ extend-ignore =
     R504,
     B008,
     N802,
-    IND101
+    IND101,
+    CCE001
 inline-quotes = single
 multiline-quotes = single
 docstring-quotes = """
