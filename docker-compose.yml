@@ -28,10 +28,9 @@ services:
       - ./.env
     restart: unless-stopped
     stdin_open: true
-    tty: true 
+    tty: true
     entrypoint: ["tail", "-f", "/dev/null"]
 
 
 volumes:
   postgres_data:
-

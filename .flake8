@@ -1,11 +1,13 @@
 [flake8]
-exclude =
+exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,settings.py
+max-line-length = 100
+max-complexity = 8
 extend-ignore =
     R504,
     B008,
     N802,
-    IND101
-max-line-length = 89
-inline-quotes = double
-multiline-quotes = double
+    IND101,
+    CCE001
+inline-quotes = single
+multiline-quotes = single
 docstring-quotes = """

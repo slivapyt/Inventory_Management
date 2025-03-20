@@ -1,4 +1,14 @@
 {
+    "python.linting.pylintEnabled": false,
+    "python.linting.mypyEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "autopep8", // или "autopep8"
+    "python.formatting.autopep8Args": "--aggressive",
+    "editor.formatOnSave": true,
+    "files.insertFinalNewline": true, // Добавляет пустую строку в конце файла
+    "files.trimFinalNewlines": true, // Удаляет лишние пустые строки в конце файла
+    "files.trimTrailingWhitespace": true, // Удаляет пробелы в конце строк
     "sqltools.connections": [
         {
             "previewLimit": 50,
