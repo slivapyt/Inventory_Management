@@ -14,13 +14,26 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, verbose_name='Email')
     position = models.ForeignKey('Position', on_delete=models.SET_NULL,
                                  **optional_field, verbose_name='Должность')
-    category = models.ForeignKey('Category', on_delete=models.SET_NULL,
-                                 **optional_field, verbose_name='Категория',
-                                 related_name='users')
+    employee_category = models.ForeignKey('EmployeeCategory', on_delete=models.SET_NULL,
+                                          **optional_field, verbose_name='Категория сотрудника',
+                                          related_name='users')
+    employee_id = models.PositiveIntegerField(unique=True, blank=True,
+                                              null=True, verbose_name='ID сотрудника')
+
+    def save(self, *args, **kwargs):
+        if not self.employee_id:
+            last_user = User.objects.order_by('-employee_id').first()
+            new_number = (last_user.employee_id + 1) if last_user and last_user.employee_id else 1
+            self.employee_id = new_number
+
+        super().save(*args, **kwargs)
+
+    def formatted_employee_id(self):
+        return f'{self.employee_id:06d}'
 
     class Meta:
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
+        verbose_name = 'Сотрудник'
+        verbose_name_plural = 'Сотрудники'
         ordering = ['username']
 
     def __str__(self):
@@ -42,14 +55,14 @@ class Position(models.Model):
         return self.title
 
 
-class Category(models.Model):
+class EmployeeCategory(models.Model):
     name = models.CharField(max_length=100, verbose_name='Категория')
     description = models.TextField(blank=True, null=True, verbose_name='Описание')
     permissions = models.ManyToManyField(Permission, blank=True, verbose_name='Права')
 
     class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = 'Категория сотрудника'
+        verbose_name_plural = 'Категории сотрудников'
         ordering = ['name']
         permissions = USER_PERMISSIONS
 

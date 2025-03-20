@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Position, Category
+from .models import User, Position, EmployeeCategory
 
 
 class PositionSerializer(serializers.ModelSerializer):
@@ -8,20 +8,20 @@ class PositionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class EmployeeCategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Category
+        model = EmployeeCategory
         fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):
     position = PositionSerializer(read_only=True)
-    category = CategorySerializer(read_only=True)
+    employee_category = EmployeeCategorySerializer(read_only=True)
 
 
 class Meta:
     model = User
     fields = [
         'id', 'username', 'first_name', 'last_name',
-        'phone_number', 'email', 'position', 'category',
+        'phone_number', 'email', 'position', 'employee_category',
     ]

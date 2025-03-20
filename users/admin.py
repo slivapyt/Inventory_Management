@@ -1,19 +1,23 @@
 # users/admin.py
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Position, User, Category
 from django.contrib.auth.models import Permission
+
+from .models import EmployeeCategory, Position, User
 
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
-    list_display = ('username', 'email', 'first_name', 'last_name', 'position', 'category', 'is_active')
-    list_filter = ('position', 'category', 'is_active')
+    list_display = (
+        'username', 'email', 'first_name',
+        'last_name', 'position', 'employee_id', 'employee_category', 'is_active',
+    )
+    list_filter = ('position', 'employee_category', 'is_active')
     search_fields = ('username', 'email', 'first_name', 'last_name')
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         ('Личные данные', {'fields': ('first_name', 'last_name', 'email')}),
-        ('Корпоративные данные пользователя', {'fields': ('position', 'category', 'phone_number')}),
+        ('Корпоративные данные пользователя', {'fields': ('position', 'employee_category', 'phone_number')}),
         (
             'Права',
             {
@@ -38,8 +42,8 @@ class CustomUserAdmin(UserAdmin):
     )
 
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+@admin.register(EmployeeCategory)
+class EmployeeCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     search_fields = ('name',)
     ordering = ('name',)
@@ -48,7 +52,7 @@ class CategoryAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         form.base_fields['permissions'].queryset = Permission.objects.filter(
-            codename__in=[perm[0] for perm in Category._meta.permissions],
+            codename__in=[perm[0] for perm in EmployeeCategory._meta.permissions],
         )
         return form
 
