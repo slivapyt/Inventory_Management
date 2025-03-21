@@ -8,6 +8,6 @@ extend-ignore =
     N802,
     IND101,
     CCE001
-inline-quotes = single
-multiline-quotes = single
+inline-quotes = double
+multiline-quotes = double
 docstring-quotes = """
