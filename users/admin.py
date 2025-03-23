@@ -18,14 +18,46 @@ class CustomUserAdmin(UserAdmin):
         "employee_category",
         "is_active",
     )
-    list_filter = ("position", "employee_category", "is_active")
-    search_fields = ("username", "email", "first_name", "last_name")
+    list_filter = (
+        "position",
+        "employee_category",
+        "is_active",
+    )
+    search_fields = (
+        "username",
+        "email",
+        "first_name",
+        "last_name",
+    )
     fieldsets = (
-        (None, {"fields": ("username", "password")}),
-        ("Личные данные", {"fields": ("first_name", "last_name", "email")}),
+        (
+            None,
+            {
+                "fields": (
+                    "username",
+                    "password",
+                ),
+            },
+        ),
+        (
+            "Личные данные",
+            {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                    "email",
+                ),
+            },
+        ),
         (
             "Корпоративные данные пользователя",
-            {"fields": ("position", "employee_category", "phone_number")},
+            {
+                "fields": (
+                    "position",
+                    "employee_category",
+                    "phone_number",
+                ),
+            },
         ),
         (
             "Права",
@@ -39,14 +71,27 @@ class CustomUserAdmin(UserAdmin):
                 ),
             },
         ),
-        ("Important dates", {"fields": ("last_login", "date_joined")}),
+        (
+            "Important dates",
+            {
+                "fields": (
+                    "last_login",
+                    "date_joined",
+                ),
+            },
+        ),
     )
     add_fieldsets = (
         (
             None,
             {
                 "classes": ("wide",),
-                "fields": ("username", "email", "password1", "password2"),
+                "fields": (
+                    "username",
+                    "email",
+                    "password1",
+                    "password2",
+                ),
             },
         ),
     )
@@ -54,7 +99,10 @@ class CustomUserAdmin(UserAdmin):
 
 @admin.register(EmployeeCategory)
 class EmployeeCategoryAdmin(admin.ModelAdmin):
-    list_display = ("name", "description")
+    list_display = (
+        "name",
+        "description",
+    )
     search_fields = ("name",)
     ordering = ("name",)
     filter_horizontal = ("permissions",)
